@@ -1,14 +1,14 @@
 FROM python:3.10.4-alpine
 
-RUN mkdir /home/bloggy
-WORKDIR /home/bloggy
+RUN mkdir /home/unwritten
+WORKDIR /home/unwritten
 
 RUN pip install --upgrade pip 
 
-COPY ./requirements.txt /home/bloggy
+COPY ./requirements.txt /home/unwritten
 RUN pip install -r requirements.txt
 
-COPY ./ /home/bloggy
+COPY ./ /home/unwritten
 
 EXPOSE 8000
 
