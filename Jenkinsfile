@@ -9,11 +9,11 @@ pipeline {
         }
 
         // Try and clone the repo
-        stage('Cloning Git') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/alexarasu/bloggy.git']]])     
-            }
-        }
+        // stage('Cloning Git') {
+        //     steps {
+        //         checkout([$class: 'GitSCM', branches: [[name: '*/dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/alexarasu/bloggy.git']]])     
+        //     }
+        // }
 
         // Clean docker container
         stage('Stopping container') {
