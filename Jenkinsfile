@@ -26,7 +26,7 @@ pipeline {
             }
         }
 
-        Clean docker images
+        // Clean docker images
         stage('Cleaning old images'){
             steps{
                 script{
