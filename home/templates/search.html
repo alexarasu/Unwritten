@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit Page {% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block body %}
+{% if searched %}
+{% if blogs|length > 3 %}
+<section class="gradient-custom p-4">
+{%else%}
+<section class="gradient-custom vh-100 p-4">
+{% endif %}
+<div class="container mt-5 mb-3">
+  <div class="row">
+    {% for blog in blogs %}
+    <div class="col-lg-4 my-4">
+      <div class="card shadow bg-info" style="width: 20rem; height: 33rem;">
+        {% if blog.image %}
+        <img src="/media/{{blog.image}}" class="card-img-top" alt="..." height="250px">
+        {%else%}
+        <img src="/media/blog_image.jpg" class="card-img-top" alt="..." height="250px">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{blog.title}} <br><small>by {{blog.author}}</small></h5>
+          <p class="card-text">{{blog.content| truncatechars:210}}</p>
+        </div>
+        <a href="/blog/{{blog.slug}}" class="btn btn-dark">Read More</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+</section>
+{% else %}
+<h1>You forgot to search</h1>
+{% endif %}
+{% endblock %}
