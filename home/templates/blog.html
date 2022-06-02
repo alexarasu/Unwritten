@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Blogs {% endblock %}
+{% block homeactive %} active {% endblock homeactive %}
+
+{% block css %}
+
+{% endblock %}
+{% block body %}
+
+{% if posts|length > 3 %}
+<section class="gradient-custom p-4">
+  {%else%}
+  <section class="gradient-custom vh-100 p-4">
+    {% endif %}
+    <!-- <section class="gradient-custom vh-100"> -->
+    <div class="container mt-5 mb-3">
+      <div class="row">
+        {% for post in posts %}
+        <div class="col-lg-4 my-4">
+          <div class="card shadow bg-info" style="width: 20rem; height: 33rem;">
+            <!-- <img src="/media/{{post.image}}" class="card-img-top" alt="..." height="250px"> -->
+            {% if post.image %}
+            <img src="/media/{{post.image}}" class="card-img-top" alt="..." height="250px">
+            {%else%}
+            <img src="/media/blog_image.jpg" class="card-img-top" alt="..." height="250px">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{post.title}}</h5>
+              <h6><small class="text-white-50 pl-2"> - {{post.author}}</small></h6>
+              <p class="card-text">{{post.content| truncatechars:210}}</p>
+            </div>
+            <a href="/blog/{{post.slug}}" class="btn btn-dark">Read More</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endblock %}
+  {% block js %}
+  <script></script>
+  {% endblock %}
