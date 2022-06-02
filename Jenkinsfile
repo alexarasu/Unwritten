@@ -16,25 +16,25 @@ pipeline {
         // }
 
         // Clean docker container
-        // stage('Stopping container') {
-        //     steps{
-        //         script {
-        //             sh 'docker stop bloggy'
-        //             sh 'docker rm bloggy'
-        //             sh 'docker container ls'
-        //         }
-        //     }
-        // }
+        stage('Stopping container') {
+            steps{
+                script {
+                    sh 'docker stop bloggy'
+                    sh 'docker rm bloggy'
+                    sh 'docker container ls'
+                }
+            }
+        }
 
-        // // Clean docker images
-        // stage('Cleaning old images'){
-        //     steps{
-        //         script{
-        //             sh 'docker rmi bloggy'
-        //             sh 'docker image ls'
-        //         }
-        //     }
-        // }
+        // Clean docker images
+        stage('Cleaning old images'){
+            steps{
+                script{
+                    sh 'docker rmi bloggy'
+                    sh 'docker image ls'
+                }
+            }
+        }
 
         // Building a docker image
         stage('Building image') {
