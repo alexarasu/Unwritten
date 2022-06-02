@@ -40,7 +40,7 @@ pipeline {
         stage('Building image') {
             steps{
                 script {
-                    sh 'docker build --tag bloggy:latest .'
+                    sh 'docker build --tag Janaki:latest .'
                 }
             }
         }
@@ -58,7 +58,7 @@ pipeline {
         stage('Deploy image'){
             steps{
                 script{
-                    sh 'docker run --name bloggy -d -p 8000:8000 bloggy:latest'
+                    sh 'docker run --name Janaki -d -p 8000:8000 Janaki:latest'
                 }
             }
         }
