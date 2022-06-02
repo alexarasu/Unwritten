@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock %}
+{% block add_blogs_active %} active {% endblock add_blogs_active %}
+
+{% block css %}
+.gradient-custom {
+    background: rgb(0,0,0);
+    background: linear-gradient(360deg, rgba(0,0,0,1) 0%, rgba(63,0,97,1) 20%, rgba(255,255,255,1) 100%);
+}
+{% endblock %}
+{% block body %}
+<section class="gradient-custom vh-100">
+    <div class="container-fluid pt-4 ">
+        <form action="/add_blogs/" enctype="multipart/form-data" method="POST"> {% csrf_token %}
+            <div class="container flexbox mt-4 fw-bold">
+                <p><label for="id_title" class="text-white">Title:</label> {{ form.title }} </p>
+                <p><label for="id_slug" class="text-white">Slug:</label> {{ form.slug }} </p>
+                <label for="id_slug" class="text-white">Content:</label>
+                <textarea name="content" cols="40" rows="10" class="form-control" placeholder="Content of the Blog"
+                    required="" id="id_content"></textarea>
+                <p></p>
+                <p><label for="id_image" class="text-white">Image:  {{ form.image }} </p>
+                <button class="btn btn-dark">Add Blog</button>  
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    document.location = '/home';
+    {% endif %}
+</script>
+{% endblock %}
