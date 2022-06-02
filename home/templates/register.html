@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %} Register Page {% endblock %}
+{% block registeractive %} active {% endblock registeractive %}
+{% block css %}
+.gradient-custom {
+    background: rgb(6,0,9);
+    background: linear-gradient(90deg, rgba(6,0,9,1) 0%, rgba(102,8,105,1) 49%, rgba(0,0,0,1) 100%);
+}
+.bg-dark {
+    background-color: black !important;
+    }
+{% endblock %}
+{% block body %}
+<section class="vh-100 gradient-custom">
+    <div class="container py-3 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-info text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <form action="/register/" method="POST"> {% csrf_token %}
+                            <div class="mb-md-3 mt-md-4 ">
+                                <h2 class="fw-bold mb-2 text-uppercase">UNWRITTEN</h2>
+                                <p class="text-white-50 mb-5">Register to Blog !</p>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" class="form-control form-control-lg" id="username"
+                                        name="username" placeholder="Username" required>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" class="form-control form-control-lg" id="first_name"
+                                        name="first_name" placeholder="First Name" required>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="text" class="form-control form-control-lg" id="last_name"
+                                        name="last_name" placeholder="Last Name">
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="email" class="form-control form-control-lg" id="email" name="email"
+                                        placeholder="Email" required>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="password" class="form-control form-control-lg" id="password1"
+                                        name="password1" placeholder="Password" required>
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <input type="password" class="form-control form-control-lg" id="password2"
+                                        name="password2" placeholder="Confirm Password" required>
+                                </div>
+                                <button class="btn btn-outline-light btn-lg px-5" type="submit">Sign Up</button>
+                            </div>
+                        </form>
+                        <div>
+                            <p class="mb-0">Already have an account ? <a href="/login/" class="text-white-50 fw-bold">
+                                    Login</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% block js %}
+<script>
+    {% if alert %}
+    alert('INCORRECT PASSWORD');
+    document.location = '/register';
+    {% endif %}
+</script>
+{% endblock %}
+{% endblock %}
