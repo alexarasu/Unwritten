@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit Blog Post {% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block body %}
+
+<section class="gradient-custom vh-100">
+    <div class="container-fluid pt-4">
+        <form enctype="multipart/form-data" method="POST"> {% csrf_token %}
+            <div class="container mt-4 fw-bold">
+                <p><label for="id_title" class="text-white">Title:</label> {{ form.title }} </p>
+                <p><label for="id_slug" class="text-white">Slug:</label> {{ form.slug }} </p>
+                <label for="id_content" class="text-white">Content:</label>
+                <p>{{form.content}}</p>
+                <p></p>
+                <p><label for="id_image" class="text-white">Image:{{ form.image }}</p>
+                <button class="btn btn-dark" class="text-white">Update Blog</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
