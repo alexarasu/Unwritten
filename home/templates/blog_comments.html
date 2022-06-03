@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %} Blogs {% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block body %}
+{% load humanize %}
+<section class="gradient-custom p-4">
+      <div class="container w-50 my-4">
+            <h1 class="blog-post-title text-white">{{post.title}}</h1>
+            <div class="media">
+                  <div class="media-body">
+                        <h6 class="ml-4 fst-italic fw-light text-white"> - {{post.author}}</h6>
+                        <h6 class="ml-4 fst-italic fw-light text-white"> {{post.dateTime}}</h6>
+                        {% if user.is_authenticated %}
+                        {% if user.id == post.author.id %}
+                        <div class="d-flex flex-row-reverse fst-bold">
+                              <small><a href="/delete_blog_post/{{post.slug}}/"
+                                          class="edit btn btn-danger p-2 ml-2 ">Delete
+                                          Post</a></small>
+                              <small><a href="/edit_blog_post/{{post.slug}}/" class="edit btn btn-warning p-2">Edit
+                                          Post</a></small>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                  </div>
+            </div>
+            <br>
+            {% if post.image %}
+            <img src="/media/{{post.image}}" alt="..." height="250px">
+            {%else%}
+            <img src="/media/blog_image.jpg" alt="..." height="250px">
+            {% endif %}
+            <br>
+            <br>
+            <p class="text-white">{{post.content}}.</p>
+            <hr>
+            {% if user.is_authenticated %}
+            <div class="container">
+                  <form action="/blog/{{post.slug}}/" method="POST"> {% csrf_token %}
+                        <div class="form-floating">
+                              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                                    style="height: 100px" id="content" name="content"></textarea>
+                              <label for="floatingTextarea2">Leave a comment here.</label>
+                              <br>
+                              <button type="submit" class="btn btn-dark">Post Comment</button>
+                        </div>
+                  </form>
+                  {% else %}
+                  <div class="container">
+                        <h4 class="text-white"><a href="/login/" class="text-">Login</a> to post comments below.</h4>
+                        {% endif %}
+                        <br>
+                        <h2 class="text-white">All Comments ({{comments.count}})</h2>
+                        <br>
+                        {% for comment in comments %}
+                        <div class="card">
+                              <div class="card-header">
+                                    <span style="font-size: 22px;">{{comment.user}} </span> <span
+                                          style="font-size: 12px;">{{comment.dateTime | naturaltime}}</span>
+                              </div>
+                              <div class="card-body">
+                                    <h6 class="card-text">{{comment.content}}</h6>
+                              </div>
+                        </div>
+                        <br>
+                        {% endfor %}
+                  </div>
+            </div>
+      </div>
+</section>
+
+{% endblock %}
