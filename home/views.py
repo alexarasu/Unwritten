@@ -7,6 +7,8 @@ from .forms import ProfileForm, BlogPostForm, UpdatePostForm
 from django.views.generic import UpdateView
 from django.contrib import messages
 
+# THis is to PR
+
 
 def index(request):
     return render(request, "index.html")
