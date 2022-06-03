@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['ec2-18-191-178-151.us-east-2.compute.amazonaws.com','ec2-34-23
 
 # Application definition
 
+# This is a test comment
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
